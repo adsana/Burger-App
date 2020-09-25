@@ -6,7 +6,7 @@ var methodOverride = require('method-override');
 var burgersController = require("./controllers/burgers_controller.js");
 var burger = require("./models/burger.js");
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 var app = express();
 
@@ -30,6 +30,6 @@ app.get("/", function(req, res) {
 	});
 });
 
-app.use("/api/burgers", burgersController);
+app.use('/',burgers);
 
 app.listen(port);
