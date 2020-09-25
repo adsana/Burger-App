@@ -1,56 +1,77 @@
-<header>
-  <div class="row">
-    <div class="col-md-12">
-      <h1 align="center">Eat The Burger</h1>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1>Eat Da Burger </h1>
+        <p>Burgers to Eat</p>
+        <br>
+        <h2>Select a Burger or Sandwich</h2>
+        <panel>
+            <form class="create-form">
+                <div class="form-group">
+                    <label for="newburger">Order Fresh Burger</label>
+                   <select data-placeholder="" id="newburger" name="burger">
+                        <option value="Nothing Selected" selected>Please Select a Sandwich</option>
+                        <option value="Hamburger">Hamburger</option>
+                        <option value="CheeseBurger">CheeseBurger</option>
+                        <option value="Double Beef Cheese">Double Up (double meat and cheese)</option>
+                        <option value="Veggie Burger">Veggie Burger</option>
+                        <option value="Pulled Pork">Pulled Pork Sandwich</option>
+                        <option value="Chicken Club">Chicken Club Sandwich</option>
+                        <option value="Steak and Cheese">Steak and Cheese Sandwich</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-success" id="addburger">
+                        <span class="fa fa-thumbs-up"></span>
+                    </button>
+                </div>
+            </form>
+        </panel>
     </div>
-  </div>
-</header>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="leftside"><strong>Order Your Burger</strong>
+                    <p>Send order to cashier when ready for pick up</p>
+                </div>
+                <div class="panel-body">
 
-<div class="center">
-  <div class="row">
-    <div class="col-md-4">
-      <h2 align="center">Uneaten Burgers</h2>
-      <ul align="center">
-        {{#each burgers}}
-          {{#unless devoured}}
-            {{> burgers/burger-block devoured=false}}
-          {{/unless}}
-        {{/each}}
-      </ul>
+                    <ul>
+                        {{#each burgers}}
+                        {{#unless devoured}}
+
+                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
+                        <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span></button>
+                        <hr>
+                        {{/unless}}
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="rightside"><strong>Burger is Ready to Devour</strong>
+                    <p>Remove when Devoured</p>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each burgers}}
+                        {{#if devoured}}
+                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
+                        <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                        <hr>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+
     </div>
-
-    <div align="center" class="col-md-4">
-      <br>
-      <br>
-      <img src="/assets/img/burger.jpg" alt="burger">
-    </div>
-
-
-    <div class="col-md-4">
-      <h2 align="center">Eaten Burgers</h2>
-      <ul align="center">
-        {{#each burgers}}
-          {{#if devoured}}
-           {{> burgers/burger-block devoured=true}}
-          {{/if}}
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div align="center" class="row">
-  <div class="col-md-12">
-    <h2>Add a Burger</h2>
-    <form class="create-form">
-
-      <div class="form-group">
-        <label for="burg">Burger Name:</label>
-        <input type="text" id="burg" name="burger_name">
-      </div>
-
-      <button type="submit">Add Burger</button>
-    </form>
-  </div>
 </div>
